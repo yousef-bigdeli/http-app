@@ -14,12 +14,12 @@
   height: 200px;
   color: #444;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .full-comment {
   flex-direction: column;
   padding: 8px;
-  width: 200px;
   height: 200px;
 }
 
