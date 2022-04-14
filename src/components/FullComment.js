@@ -1,6 +1,6 @@
 const FullComment = () => {
   return (
-    <div className='full-comment'>
+    <div className='full-comment flex'>
       <span>Name</span>
       <span>Email</span>
       <span>Body</span>

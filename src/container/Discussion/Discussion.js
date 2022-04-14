@@ -6,13 +6,15 @@ import "./Discussion.css";
 const Discussion = () => {
   return (
     <main className="container">
-      <section>
+      <section className='flex'>
+        <Comment />
+        <Comment />
         <Comment />
       </section>
-      <section>
+      <section className='flex'>
         <FullComment />
       </section>
-      <section>
+      <section className='flex'>
         <NewComment />
       </section>
     </main>
