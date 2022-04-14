@@ -11,8 +11,8 @@ const Discussion = () => {
 
   useEffect(() => {
     axios
-      .get("https://jsonplaceholder.typicode.com/comments")
-      .then((res) => setComments(res.data.splice(0, 4)))
+      .get("http://localhost:3001/comments")
+      .then((res) => setComments(res.data.reverse().splice(0, 4)))
       .catch((err) => console.log(err));
   }, []);
 
