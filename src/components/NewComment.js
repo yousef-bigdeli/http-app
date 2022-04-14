@@ -1,11 +1,10 @@
-import axios from "axios";
 import { useState } from "react";
 
-const NewComment = () => {
+const NewComment = ({ postComment }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
-    content: "",
+    body: "",
   });
 
   const changeInputHandler = (e) => {
@@ -14,17 +13,19 @@ const NewComment = () => {
     });
   };
 
-  const createComment = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    axios
-      .post("https://jsonplaceholder.typicode.com/comments", comment)
-      .then((res) => console.log("Comment was added."))
-      .catch((err) => console.log(err));
+    postComment(comment);
+    setComment({
+      name: "",
+      email: "",
+      body: "",
+    });
   };
 
   return (
     <div>
-      <form className="new-comment flex" onSubmit={createComment}>
+      <form className="new-comment flex" onSubmit={submitHandler}>
         <div className="flex">
           <label htmlFor="name">Name</label>
           <input
@@ -47,12 +48,7 @@ const NewComment = () => {
         </div>
         <div className="flex">
           <label htmlFor="body">Body</label>
-          <textarea
-            id="body"
-            name="content"
-            onChange={changeInputHandler}
-            value={comment.content}
-          ></textarea>
+          <textarea id="body" name="body" onChange={changeInputHandler} value={comment.body}/>
         </div>
         <button type="submit">Add</button>
       </form>

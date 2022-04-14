@@ -9,12 +9,26 @@ const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedComment, setSelectedComment] = useState(null);
 
-  useEffect(() => {
+  const getComments = () => {
     axios
       .get("http://localhost:3001/comments")
       .then((res) => setComments(res.data.reverse().splice(0, 4)))
       .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getComments();
   }, []);
+
+  const postComment = (comment) => {
+    axios
+      .post("http://localhost:3001/comments", comment)
+      .then((res) => {
+        getComments();
+        console.log("Comment was added.");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <main className="container">
@@ -35,7 +49,7 @@ const Discussion = () => {
         <FullComment comment={selectedComment} />
       </section>
       <section className="flex">
-        <NewComment />
+        <NewComment postComment={postComment} />
       </section>
     </main>
   );

@@ -2,7 +2,7 @@ const FullComment = ({ comment }) => {
   return comment ? (
     <div className="full-comment flex">
       <span>Name: {comment.name}</span>
-      <span>Email: {comment.id}</span>
+      <span>Email: {comment.email}</span>
       <span>Body: {comment.body}</span>
     </div>
   ) : (
