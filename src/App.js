@@ -1,10 +1,11 @@
 import "./App.css";
-import HttpApp from "./components/HttpApp";
+import Discussion from './container/Discussion/Discussion';
+
 
 function App() {
   return (
     <div className="App">
-      <HttpApp />
+      <Discussion />
     </div>
   );
 }
