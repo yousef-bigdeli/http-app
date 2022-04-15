@@ -9,25 +9,26 @@ const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedComment, setSelectedComment] = useState(null);
 
-  const getComments = () => {
-    axios
-      .get("http://localhost:3001/comments")
-      .then((res) => setComments(res.data.reverse().splice(0, 4)))
-      .catch((err) => console.log(err));
+  const getComments = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/comments");
+      setComments(data.reverse().splice(0, 4));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getComments();
   }, []);
 
-  const postComment = (comment) => {
-    axios
-      .post("http://localhost:3001/comments", comment)
-      .then((res) => {
-        getComments();
-        console.log("Comment was added.");
-      })
-      .catch((err) => console.log(err));
+  const postComment = async (comment) => {
+    try {
+      await axios.post("http://localhost:3001/comments", comment);
+      getComments();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
