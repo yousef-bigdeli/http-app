@@ -4,6 +4,7 @@ import FullComment from "../../components/FullComment";
 import NewComment from "../../components/NewComment";
 import "./Discussion.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -26,6 +27,18 @@ const Discussion = () => {
     try {
       await axios.post("http://localhost:3001/comments", comment);
       getComments();
+      toast.success("Comment was added.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteComment = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/comments/${id}`);
+      getComments();
+      setSelectedComment(null);
+      toast.success("Comment was deleted.");
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +60,7 @@ const Discussion = () => {
         )}
       </section>
       <section className="flex">
-        <FullComment comment={selectedComment} />
+        <FullComment comment={selectedComment} onDelete={deleteComment} />
       </section>
       <section className="flex">
         <NewComment postComment={postComment} />
