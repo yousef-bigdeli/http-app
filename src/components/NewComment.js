@@ -50,7 +50,7 @@ const NewComment = ({ postComment }) => {
           <label htmlFor="body">Body</label>
           <textarea id="body" name="body" onChange={changeInputHandler} value={comment.body}/>
         </div>
-        <button type="submit">Add</button>
+        <button type="submit" className='add-btn'>Add</button>
       </form>
     </div>
   );
