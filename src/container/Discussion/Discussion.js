@@ -2,30 +2,27 @@ import { useState, useEffect } from "react";
 import Comment from "../../components/Comment";
 import FullComment from "../../components/FullComment";
 import NewComment from "../../components/NewComment";
-import "./Discussion.css";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { getAllComments, postComment, deleteComment } from "../../services/commentServices";
+import "./Discussion.css";
 
 const Discussion = () => {
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState([]);
   const [selectedComment, setSelectedComment] = useState(null);
 
   const getComments = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:3001/comments");
-      setComments(data.reverse().splice(0, 4));
-    } catch (error) {
-      console.log(error);
-    }
+    getAllComments()
+      .then(({ data }) => setComments(data.reverse().splice(0, 4)))
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     getComments();
   }, []);
 
-  const postComment = async (comment) => {
+  const postCommentHandler = async (comment) => {
     try {
-      await axios.post("http://localhost:3001/comments", comment);
+      await postComment(comment);
       getComments();
       toast.success("Comment was added.");
     } catch (error) {
@@ -33,9 +30,9 @@ const Discussion = () => {
     }
   };
 
-  const deleteComment = async (id) => {
+  const deleteCommentHandler = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/comments/${id}`);
+      await deleteComment(id);
       getComments();
       setSelectedComment(null);
       toast.success("Comment was deleted.");
@@ -60,10 +57,10 @@ const Discussion = () => {
         )}
       </section>
       <section className="flex">
-        <FullComment comment={selectedComment} onDelete={deleteComment} />
+        <FullComment comment={selectedComment} onDelete={deleteCommentHandler} />
       </section>
       <section className="flex">
-        <NewComment postComment={postComment} />
+        <NewComment postComment={postCommentHandler} />
       </section>
     </main>
   );
