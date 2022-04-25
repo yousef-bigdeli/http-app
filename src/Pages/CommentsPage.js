@@ -17,7 +17,7 @@ const CommentsPage = () => {
         .then(({ data }) => setComment(data))
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [id]);
 
   const deleteCommentHandler = async (id) => {
     try {
