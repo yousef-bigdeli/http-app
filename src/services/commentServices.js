@@ -12,4 +12,8 @@ const deleteComment = (id) => {
   return CommentHTTP.delete(`/comments/${id}`);
 };
 
-export { getAllComments, postComment, deleteComment };
+const getCommentById = (id) => {
+  return CommentHTTP.get(`/comments/${id}`);
+};
+
+export { getAllComments, postComment, deleteComment, getCommentById };
