@@ -1,4 +1,4 @@
-import NewComment from "../components/NewComment";
+import NewComment from "../components/Comment/NewComment";
 import { postComment } from "../services/commentServices";
 import { toast } from "react-toastify";
 

@@ -1,4 +1,4 @@
-import FullComment from "../components/FullComment";
+import FullComment from "../components/Comment/FullComment";
 import { deleteComment, getCommentById } from "../services/commentServices";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
