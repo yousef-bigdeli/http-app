@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import Comment from "../../components/Comment/Comment";
+import Comment from "./Comment";
 import { getAllComments } from "../../services/commentServices";
-import "./Discussion.css";
 
-const Discussion = () => {
+const CommentsList = () => {
   const [comments, setComments] = useState([]);
-  // const [selectedComment, setSelectedComment] = useState(null);
 
   const getComments = async () => {
     getAllComments()
@@ -30,4 +28,4 @@ const Discussion = () => {
   );
 };
 
-export default Discussion;
+export default CommentsList;

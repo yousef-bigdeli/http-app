@@ -3,7 +3,7 @@ import { deleteComment, getCommentById } from "../services/commentServices";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Discussion from "../container/Discussion/Discussion";
+import CommentsList from "../components/Comment/CommentsList";
 
 const CommentsPage = () => {
   const [comment, setComment] = useState({});
@@ -32,7 +32,7 @@ const CommentsPage = () => {
   return (
     <section className="flex">
       {pathname === "/comments" ? (
-        <Discussion />
+        <CommentsList />
       ) : (
         <FullComment comment={comment} onDelete={deleteCommentHandler} />
       )}
